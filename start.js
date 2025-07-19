@@ -1,1 +1,95 @@
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('c d=3.D("#q-w");c f=3.j("L");c 4=3.D(".q");f.s=2(){i(4.0.h("1")){4.0.b("l");A(()=>{4.0.9("1","l")},z)}y{4.0.b("1")}};f.6(\'8\',2(){f.n.m=\'B\';d.n.m=\'C\'});d.6(\'8\',2(){f.n.m=\'C\';d.n.m=\'B\'});d.s=2(){i(4.0.h("1")){4.0.b("l");A(()=>{4.0.9("1","l")},z)}y{4.0.b("1")}};c k=3.v(".7");k.u(7=>{7.6("8",2(e){e.K();J.0.I("1")})});H.s=2(r){i(!r.g.x(\'.7 a\')&&!r.g.x(\'#q-w\')){c k=3.v(".7");k.u(7=>{7.0.9("1")})}}3.6(\'G\',2(){p o=3.j(\'F\');p t=3.j(\'E\');p 5=3.j(\'5\');o.6(\'8\',2(){5.0.b(\'1\')});t.6(\'8\',2(){5.0.9(\'1\')});3.6(\'8\',2(e){i(5.0.h(\'1\')&&!5.h(e.g)&&e.g!==o){5.0.9(\'1\')}})});',48,48,'classList|active|function|document|navbar|searchBar|addEventListener|dropdown|click|remove||add|let|menuBtn||cerrarBtn|target|contains|if|getElementById|dropdowns|closing|display|style|openBtn|const|menu|event|onclick|closeBtn|forEach|querySelectorAll|btn|matches|else|400|setTimeout|none|block|querySelector|closeSearch|openSearch|DOMContentLoaded|window|toggle|this|stopPropagation|cerrarbtn'.split('|'),0,{}))
+let menuBtn = document.querySelector("#menu-btn");
+let cerrarBtn = document.getElementById("cerrarbtn");
+let navbar = document.querySelector(".menu");
+
+cerrarBtn.onclick = function() {
+  if (navbar.classList.contains("active")) {
+    // Animación de salida
+    navbar.classList.add("closing");
+    setTimeout(() => {
+      navbar.classList.remove("active", "closing");
+    }, 400); // duración del slideUp
+  } else {
+    navbar.classList.add("active");
+  }
+};
+//BTN CLIC
+cerrarBtn.addEventListener('click', function () {
+  cerrarBtn.style.display = 'none';
+  menuBtn.style.display = 'block';
+  // Tab to edit
+});
+menuBtn.addEventListener('click', function () {
+  cerrarBtn.style.display = 'block';
+  menuBtn.style.display = 'none';
+  // Tab to edit
+});
+
+
+menuBtn.onclick = function() {
+  if (navbar.classList.contains("active")) {
+    // Animación de salida
+    navbar.classList.add("closing");
+    setTimeout(() => {
+      navbar.classList.remove("active", "closing");
+    }, 400); // duración del slideUp
+  } else {
+    navbar.classList.add("active");
+  }
+};
+
+// Manejo de los submenús
+let dropdowns = document.querySelectorAll(".dropdown");
+
+dropdowns.forEach(dropdown => {
+  dropdown.addEventListener("click", function(e) {
+    e.stopPropagation(); // Evita que el evento se propague
+    this.classList.toggle("active");
+  });
+});
+
+// Cerrar los submenús si se hace clic fuera de ellos
+window.onclick = function(event) {
+  if (!event.target.matches('.dropdown a') && !event.target.matches('#menu-btn')) {
+    let dropdowns = document.querySelectorAll(".dropdown");
+    dropdowns.forEach(dropdown => {
+      dropdown.classList.remove("active");
+    });
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const openBtn = document.getElementById('openSearch');
+  const closeBtn = document.getElementById('closeSearch');
+  const searchBar = document.getElementById('searchBar');
+
+  openBtn.addEventListener('click', function () {
+    searchBar.classList.add('active');
+  });
+
+  closeBtn.addEventListener('click', function () {
+    searchBar.classList.remove('active');
+  });
+
+  document.addEventListener('click', function (e) {
+    if (
+      searchBar.classList.contains('active') &&
+      !searchBar.contains(e.target) &&
+      e.target !== openBtn
+    ) {
+      searchBar.classList.remove('active');
+    }
+  });
+});
