@@ -31,9 +31,9 @@
           const parser = new DOMParser();
           const doc = parser.parseFromString(html, "text/html");
 
-          const nuevosPosts = doc.querySelectorAll('#blog-posts-container .homePost__block');
+          const nuevosPosts = doc.querySelectorAll('.blog-posts .homePost__block');
           const nuevoBoton = doc.getElementById("load-more-btn");
-          const contenedor = document.getElementById("blog-posts-container");
+          const contenedor = document.querySelector(".blog-posts");
 
           nuevosPosts.forEach(post => contenedor.appendChild(post));
           observarTarjetas();
