@@ -37,8 +37,8 @@
           const doc = parser.parseFromString(html, "text/html");
 
           // Extraer nuevos posts
-          const nuevosPosts = doc.querySelectorAll('#blog-posts-container .homePost__block');
-          const contenedor = document.getElementById("blog-posts-container");
+          const nuevosPosts = doc.querySelectorAll('.blog-posts .homePost__block');
+          const contenedor = document.querySelector(".blog-posts");
           nuevosPosts.forEach(post => contenedor.appendChild(post));
 
           // Extraer nuevo botón
